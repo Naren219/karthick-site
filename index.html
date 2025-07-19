@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karthick Yoga - Home</title>
+    <title>Karthick Yoga</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -11,22 +11,31 @@
     <nav class="navbar">
         <div class="container nav-flex">
             <div class="logo">Karthick Yoga</div>
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="classes.html">Classes</a></li>
-                <li><a href="testimonials.html">Testimonials</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#classes" class="nav-link">Classes</a></li>
+                <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </div>
     </nav>
-    <header class="hero">
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
         <div class="container hero-content">
             <h1>Find Your Balance with Karthick Yoga</h1>
             <p>Join our welcoming yoga community and experience transformation in body and mind. All levels welcome!</p>
-            <a href="classes.html" class="cta-btn">View Classes</a>
+            <a href="#classes" class="cta-btn">View Classes</a>
         </div>
-    </header>
+    </section>
+
+    <!-- Features Section -->
     <section class="features container">
         <div class="feature">
             <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" alt="Yoga Pose">
@@ -44,10 +53,169 @@
             <p>Whether you're a beginner or advanced, there's a class for you.</p>
         </div>
     </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container about-main">
+            <h1>About Karthick</h1>
+            <div class="about-flex">
+                <img src="karthick-profile.jpg" alt="Karthick Yoga Teacher" class="about-photo">
+                <div class="about-text">
+                    <h2>Meet Your Teacher</h2>
+                    <p>Karthick is a passionate and certified yoga instructor with over 10 years of experience. His teaching blends traditional Hatha and Vinyasa yoga, focusing on mindful movement, breath, and holistic well-being.</p>
+                    
+                    <h3>Teaching Style</h3>
+                    <p>Karthick's classes are welcoming, supportive, and tailored to each student's needs. He believes yoga is for everyone and strives to create a safe, inclusive space for all.</p>
+                    
+                    <h3>Credentials</h3>
+                    <ul>
+                        <li>Former physical education instructor</li>
+                        <li>M.Sc (Therapeutic Yoga)</li>
+                        <li>Took yoga therapy course</li>
+                        <li>RYT-500 Certified Yoga Teacher</li>
+                        <li>Certified in Yoga Therapy</li>
+                        <li>10+ years teaching experience</li>
+                        <li>Workshops in India and abroad</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Classes Section -->
+    <section id="classes" class="classes-section">
+        <div class="container classes-main">
+            <h1>Yoga Classes</h1>
+            <section class="class-types">
+                <div class="class-card">
+                    <h2>Gentle Yoga</h2>
+                    <p>Slow-paced, restorative classes perfect for beginners or those seeking relaxation. Focus on mindful movement, breath, and holistic well-being.</p>
+                </div>
+            </section>
+            <section class="schedule">
+                <h2>Class Schedule</h2>
+                <table class="schedule-table">
+                    <tr><th>Day</th><th>Time</th><th>Class</th></tr>
+                    <tr><td>Monday</td><td>7:30-8:30 AM</td><td>Gentle Yoga</td></tr>
+                    <tr><td>Wednesday</td><td>7:30-8:30 AM</td><td>Gentle Yoga</td></tr>
+                    <tr><td>Friday</td><td>7:30-8:30 AM</td><td>Gentle Yoga</td></tr>
+                </table>
+            </section>
+            <section class="pricing">
+                <h2>Pricing</h2>
+                <ul>
+                    <li>3 classes per week: <strong>$50 each week</strong></li>
+                </ul>
+                <a href="#contact" class="cta-btn">Book a Class</a>
+            </section>
+        </div>
+    </section>
+
+    <!-- Student Work Section -->
+    <section id="testimonials" class="student-work-section">
+        <div class="container student-work-main">
+            <h1>Student Performances</h1>
+            
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/COufULAi_t0?si=V5EbYL1IJpVdFRtq" 
+                            title="Student Yoga Performance 1" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/q1gJFsK4Ikg" 
+                            title="Student Yoga Performance 2" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Booking Section -->
+    <section id="contact" class="whatsapp-section">
+        <div class="container whatsapp-main">
+            <h1>Book Your Class</h1>
+            <div class="whatsapp-content">
+                <div class="whatsapp-info">
+                    <div class="booking-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Send WhatsApp Message</h3>
+                                <p>Click the button below to open WhatsApp with a pre-filled message</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>We'll Respond Quickly</h3>
+                                <p>We'll get back to you with class schedules and pricing details</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Start Your Practice</h3>
+                                <p>Join us for your first class and begin your yoga journey</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="whatsapp-buttons">
+                        <a href="https://wa.me/919944516052?text=Hi%20Karthick!%20I'm%20interested%20in%20joining%20your%20yoga%20classes.%20Could%20you%20please%20share%20the%20schedule%20and%20pricing%20details?" class="whatsapp-btn primary" target="_blank" rel="noopener">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                            </svg>
+                            Quick Book via WhatsApp
+                        </a>
+                        
+                        <div class="manual-whatsapp">
+                            <p>Or manually send a message to:</p>
+                            <div class="phone-number">
+                                <span>+91 9944516052</span>
+                                <button class="copy-btn" onclick="copyPhoneNumber()" title="Copy phone number">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <a href="https://wa.me/919944516052" class="whatsapp-btn secondary" target="_blank" rel="noopener">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                                </svg>
+                                Open WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-details">
+                        <p><strong>Response Time:</strong> Usually within 1-2 hours</p>
+                        <p><strong>Available:</strong> Monday to Friday, 7:30 AM - 8:30 AM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer class="footer">
         <div class="container">
             <p>&copy; 2024 Karthick Yoga. All rights reserved.</p>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html> 
