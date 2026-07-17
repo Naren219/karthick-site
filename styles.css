@@ -285,9 +285,8 @@ section.visible {
 
 .about-photo {
     width: 280px;
-    height: 350px;
+    height: auto;
     border-radius: 20px;
-    object-fit: cover;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     transition: transform 0.3s ease;
 }
@@ -830,7 +829,6 @@ section.visible {
     
     .about-photo {
         width: 220px;
-        height: 280px;
     }
     
     .nav-links {
@@ -999,7 +997,6 @@ section.visible {
     
     .about-photo {
         width: 200px;
-        height: 250px;
     }
     
     .about-flex h2 {
@@ -1180,7 +1177,6 @@ section.visible {
     
     .about-photo {
         width: 180px;
-        height: 220px;
     }
     
     .about-flex {
@@ -1459,7 +1455,6 @@ section.visible {
     
     .about-photo {
         width: 160px;
-        height: 200px;
     }
     
     .about-flex h2 {

@@ -100,8 +100,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Run section reveal on load and scroll
-    window.addEventListener('load', revealSections);
+    // Run section reveal immediately and on scroll
+    revealSections();
     window.addEventListener('scroll', revealSections, { passive: true });
     
     // Copy phone number functionality
@@ -143,8 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     }
     
-    // Add body loaded class for initial animation
-    window.addEventListener('load', function() {
-        document.body.classList.add('loaded');
-    });
+    // Add body loaded class for initial animation as soon as the DOM is ready,
+    // so the page doesn't stay hidden waiting for images/iframes to finish
+    document.body.classList.add('loaded');
 }); 
