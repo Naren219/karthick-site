@@ -1,7 +1,7 @@
 /* Reset and Base Styles */
 /* Warm Color Theme Variables */
 :root {
-    --primary-color: #d97706;
+    --primary-color: #a64b04;
     --secondary-color: #f59e0b;
     --accent-color: #dc2626;
     --text-dark: #1f2937;
@@ -29,15 +29,7 @@ body {
     color: var(--text-dark);
     margin: 0;
     min-height: 100vh;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
     position: relative;
-}
-
-body.loaded {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 body.menu-open {
@@ -48,18 +40,6 @@ body.menu-open {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 20px;
-}
-
-/* Section animations */
-section {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-section.visible {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 /* Navigation */
@@ -102,6 +82,72 @@ section.visible {
     color: var(--secondary-color);
 }
 
+.nav-brand {
+    flex-shrink: 0;
+}
+
+.region-switch {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+}
+
+.language-switch {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+}
+
+.language-switch a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--text-light);
+    text-decoration: none;
+}
+
+.language-switch a[aria-current="page"] {
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.language-switch a:hover { text-decoration: underline; }
+
+html[lang="ta"] body,
+html[lang="ta"] .logo {
+    font-family: 'Noto Sans Tamil', 'Nirmala UI', Latha, sans-serif;
+    letter-spacing: normal;
+}
+
+html[lang="ta"] h1,
+html[lang="ta"] h2,
+html[lang="ta"] h3 { line-height: 1.5; }
+
+.region-switch a {
+    color: var(--text-light);
+    padding: 0.25rem 0;
+    text-decoration: none;
+}
+
+.region-switch a[aria-current="page"] {
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.region-switch a:hover {
+    text-decoration: underline;
+}
+
+.region-switch a:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
 .nav-links {
     list-style: none;
     display: flex;
@@ -136,7 +182,7 @@ section.visible {
     left: 50%;
     width: 0;
     height: 3px;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: var(--primary-color);
     transition: all 0.3s ease;
     transform: translateX(-50%);
     border-radius: 2px;
@@ -228,7 +274,7 @@ section.visible {
 
 .cta-btn {
     display: inline-block;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: var(--primary-color);
     color: white;
     padding: 1rem 2.5rem;
     text-decoration: none;
@@ -267,7 +313,7 @@ section.visible {
     background: white;
 }
 
-.about-main h1 {
+.about-main h2 {
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--primary-color);
@@ -283,10 +329,19 @@ section.visible {
     margin: 0 auto;
 }
 
+.about-flex picture {
+    flex-shrink: 0;
+    max-width: 100%;
+    line-height: 0;
+}
+
 .about-photo {
     width: 280px;
     height: auto;
     border-radius: 20px;
+    object-fit: contain;
+    max-width: 100%;
+    flex-shrink: 0;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     transition: transform 0.3s ease;
 }
@@ -348,7 +403,7 @@ section.visible {
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
 }
 
-.classes-main h1 {
+.classes-main h2 {
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--primary-color);
@@ -358,7 +413,7 @@ section.visible {
 
 .class-types {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
     gap: 2rem;
     margin-bottom: 3rem;
 }
@@ -376,7 +431,7 @@ section.visible {
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
-.class-card h2 {
+.class-card h3 {
     color: var(--primary-color);
     margin-bottom: 1.2rem;
     font-size: 1.6rem;
@@ -424,7 +479,7 @@ section.visible {
     background: white;
 }
 
-.student-work-main h1 {
+.student-work-main h2 {
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--primary-color);
@@ -434,7 +489,7 @@ section.visible {
 
 .video-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
     gap: 2rem;
     margin-top: 2rem;
 }
@@ -474,7 +529,7 @@ section.visible {
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
 }
 
-.whatsapp-main h1 {
+.whatsapp-main h2 {
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--primary-color);
@@ -520,7 +575,7 @@ section.visible {
 }
 
 .step-number {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: var(--primary-color);
     color: white;
     width: 40px;
     height: 40px;
@@ -567,7 +622,7 @@ section.visible {
 }
 
 .whatsapp-btn.primary {
-    background: #25d366;
+    background: #147a3c;
     color: white;
     box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
 }
@@ -579,12 +634,12 @@ section.visible {
 
 .whatsapp-btn.secondary {
     background: white;
-    color: #25d366;
-    border: 2px solid #25d366;
+    color: #147a3c;
+    border: 2px solid #147a3c;
 }
 
 .whatsapp-btn.secondary:hover {
-    background: #25d366;
+    background: #147a3c;
     color: white;
     transform: translateY(-3px);
 }
@@ -642,12 +697,12 @@ section.visible {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 32px;
-    min-height: 32px;
+    min-width: 44px;
+    min-height: 44px;
 }
 
 .copy-btn:hover {
-    background: var(--secondary-color);
+    background: var(--primary-color);
 }
 
 .copy-btn svg {
@@ -655,11 +710,11 @@ section.visible {
     height: 16px;
 }
 
-.copy-success {
+.copy-status {
     position: fixed;
     top: 20px;
     right: 20px;
-    background: #10b981;
+    background: #147a3c;
     color: white;
     padding: 1rem 1.5rem;
     border-radius: 10px;
@@ -693,7 +748,7 @@ section.visible {
     /* margin-top: 2rem; */
 }
 
-.socials-main h1 {
+.socials-main h2 {
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--primary-color);
@@ -829,6 +884,7 @@ section.visible {
     
     .about-photo {
         width: 220px;
+        height: auto;
     }
     
     .nav-links {
@@ -894,7 +950,7 @@ section.visible {
     
     .nav-links a.active,
     .nav-links a:hover {
-        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        background: var(--primary-color);
         color: white;
         border-bottom: none;
         transform: translateY(-3px);
@@ -987,16 +1043,17 @@ section.visible {
         min-height: 32px;
     }
     
-    .about-main h1,
-    .classes-main h1,
-    .student-work-main h1,
-    .whatsapp-main h1,
-    .socials-main h1 {
+    .about-main h2,
+    .classes-main h2,
+    .student-work-main h2,
+    .whatsapp-main h2,
+    .socials-main h2 {
         font-size: 2rem;
     }
     
     .about-photo {
         width: 200px;
+        height: auto;
     }
     
     .about-flex h2 {
@@ -1007,7 +1064,7 @@ section.visible {
         font-size: 1.2rem;
     }
     
-    .socials-main h1 {
+    .socials-main h2 {
         font-size: 2rem;
     }
     
@@ -1035,7 +1092,7 @@ section.visible {
         padding: 1.5rem;
     }
     
-    .class-card h2 {
+    .class-card h3 {
         font-size: 1.3rem;
     }
     
@@ -1163,20 +1220,21 @@ section.visible {
     }
     
     .copy-btn {
-        min-width: 30px;
-        min-height: 30px;
+        min-width: 44px;
+        min-height: 44px;
     }
     
-    .about-main h1,
-    .classes-main h1,
-    .student-work-main h1,
-    .whatsapp-main h1,
-    .socials-main h1 {
+    .about-main h2,
+    .classes-main h2,
+    .student-work-main h2,
+    .whatsapp-main h2,
+    .socials-main h2 {
         font-size: 1.8rem;
     }
     
     .about-photo {
         width: 180px;
+        height: auto;
     }
     
     .about-flex {
@@ -1191,7 +1249,7 @@ section.visible {
         font-size: 1.1rem;
     }
     
-    .socials-main h1 {
+    .socials-main h2 {
         font-size: 1.8rem;
     }
     
@@ -1226,7 +1284,7 @@ section.visible {
         padding: 1.5rem;
     }
     
-    .class-card h2 {
+    .class-card h3 {
         font-size: 1.3rem;
         font-weight: 700;
         line-height: 1.3;
@@ -1436,8 +1494,8 @@ section.visible {
     
     .copy-btn {
         padding: 0.4rem;
-        min-width: 28px;
-        min-height: 28px;
+        min-width: 44px;
+        min-height: 44px;
     }
     
     .copy-btn svg {
@@ -1445,16 +1503,17 @@ section.visible {
         height: 14px;
     }
     
-    .about-main h1,
-    .classes-main h1,
-    .student-work-main h1,
-    .whatsapp-main h1,
-    .socials-main h1 {
+    .about-main h2,
+    .classes-main h2,
+    .student-work-main h2,
+    .whatsapp-main h2,
+    .socials-main h2 {
         font-size: 1.6rem;
     }
     
     .about-photo {
         width: 160px;
+        height: auto;
     }
     
     .about-flex h2 {
@@ -1465,7 +1524,7 @@ section.visible {
         font-size: 1rem;
     }
     
-    .socials-main h1 {
+    .socials-main h2 {
         font-size: 1.6rem;
     }
     
@@ -1505,7 +1564,7 @@ section.visible {
         padding: 1.2rem;
     }
     
-    .class-card h2 {
+    .class-card h3 {
         font-size: 1.2rem;
         font-weight: 700;
         line-height: 1.3;
@@ -1630,3 +1689,67 @@ section.visible {
 #socials {
     margin-top: 0 !important;
   }
+
+/* Keyboard access and native anchor navigation. */
+html { scroll-padding-top: var(--header-height, 110px); }
+:focus-visible { outline: 3px solid var(--text-dark); outline-offset: 4px; }
+section[tabindex]:focus, main:focus { outline: none; }
+.skip-link {
+    position: fixed;
+    top: 0.5rem;
+    left: 0.5rem;
+    z-index: 1001;
+    padding: 0.8rem 1rem;
+    background: white;
+    color: var(--text-dark);
+    transform: translateY(-200%);
+}
+.skip-link:focus { transform: none; }
+.region-switch a { min-height: 44px; display: inline-flex; align-items: center; }
+.copy-status:empty { display: none; }
+.copy-status { max-width: calc(100vw - 40px); }
+.whatsapp-btn svg { flex-shrink: 0; }
+.social-link.instagram:hover { background: #9e2455; }
+
+/* Keep navigation available without JavaScript, and collapse it on tablets. */
+@media (max-width: 1000px) {
+    .nav-flex { flex-wrap: wrap; gap: 0.5rem; }
+    .mobile-menu-toggle { display: none; }
+    .nav-links {
+        display: flex;
+        position: static;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.25rem;
+        box-shadow: none;
+    }
+    .nav-links a { display: inline-block; padding: 0.75rem; font-size: 1rem; }
+    .js .nav-flex { flex-wrap: nowrap; }
+    .js .mobile-menu-toggle { display: flex; }
+    .js .nav-links {
+        display: none;
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap: 0.5rem;
+        overflow-y: auto;
+        padding: 5rem 1rem 2rem;
+    }
+    .js .nav-links.active { display: flex; }
+    .js .nav-links a { font-size: 1.2rem; padding: 0.8rem 1.5rem; }
+}
+@media (max-height: 500px) and (max-width: 1000px) {
+    .js .nav-links { justify-content: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+    .about-photo:hover, .class-card:hover, .video-card:hover, .cta-btn:hover,
+    .whatsapp-btn:hover, .social-link:hover, .nav-links a:hover { transform: none; }
+}

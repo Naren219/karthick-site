@@ -1,149 +1,113 @@
-// Minimal JavaScript for Karthick Yoga website - Optimized for fast loading
+// Progressive enhancements: all content and section links work without this file.
+document.addEventListener('DOMContentLoaded', () => {
+    document.documentElement.classList.add('js');
+    const tamil = document.documentElement.lang === 'ta';
+    const labels = tamil ? {
+        openMenu: 'வழிசெலுத்தல் பட்டியலைத் திறக்கவும்',
+        closeMenu: 'வழிசெலுத்தல் பட்டியலை மூடவும்',
+        copied: 'தொலைபேசி எண் நகலெடுக்கப்பட்டது!',
+        copyFailed: 'நகலெடுக்க முடியவில்லை. மேலே உள்ள தொலைபேசி எண்ணைத் தேர்ந்தெடுத்து நகலெடுக்கவும்.'
+    } : {
+        openMenu: 'Open navigation menu',
+        closeMenu: 'Close navigation menu',
+        copied: 'Phone number copied!',
+        copyFailed: 'Could not copy. Select and copy the phone number shown above.'
+    };
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Essential elements
-    const navLinks = document.querySelectorAll('.nav-link');
-    const sections = document.querySelectorAll('section[id]');
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const navLinksContainer = document.querySelector('.nav-links');
-    
-    // Smooth scrolling for navigation links
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                // Remove active class from all links
-                navLinks.forEach(link => link.classList.remove('active'));
-                
-                // Add active class to clicked link
-                this.classList.add('active');
-                
-                // Smooth scroll to target section
-                targetSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
+    document.querySelectorAll('.region-switch a[data-country]').forEach(link => {
+        link.addEventListener('click', () => {
+            const secure = location.protocol === 'https:' ? '; Secure' : '';
+            document.cookie = `nf_country=${link.dataset.country}; Path=/; Max-Age=31536000; SameSite=Lax${secure}`;
         });
     });
-    
-    // Update active navigation link based on scroll position (throttled)
-    let ticking = false;
-    function updateActiveNavLink() {
-        if (!ticking) {
-            requestAnimationFrame(() => {
-                const scrollPosition = window.scrollY + 100;
-                
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.offsetHeight;
-                    const sectionId = section.getAttribute('id');
-                    
-                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                        navLinks.forEach(link => link.classList.remove('active'));
-                        
-                        const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
-                        if (activeLink) {
-                            activeLink.classList.add('active');
-                        }
-                    }
-                });
-                ticking = false;
-            });
-            ticking = true;
-        }
-    }
-    
-    // Throttled scroll listener
-    window.addEventListener('scroll', updateActiveNavLink, { passive: true });
-    
-    // Mobile menu toggle functionality
-    if (mobileMenuToggle && navLinksContainer) {
-        mobileMenuToggle.addEventListener('click', function() {
-            this.classList.toggle('active');
-            navLinksContainer.classList.toggle('active');
-            document.body.classList.toggle('menu-open');
-        });
-        
-        // Close mobile menu when clicking on a link
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                mobileMenuToggle.classList.remove('active');
-                navLinksContainer.classList.remove('active');
-                document.body.classList.remove('menu-open');
-            });
-        });
-        
-        // Close mobile menu on window resize
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 768) {
-                mobileMenuToggle.classList.remove('active');
-                navLinksContainer.classList.remove('active');
-                document.body.classList.remove('menu-open');
-            }
-        });
-    }
-    
-    // Simple section reveal (minimal animation)
-    function revealSections() {
-        const sections = document.querySelectorAll('section');
-        sections.forEach(section => {
-            const rect = section.getBoundingClientRect();
-            if (rect.top < window.innerHeight * 0.8) {
-                section.style.opacity = '1';
-                section.style.transform = 'translateY(0)';
-            }
-        });
-    }
-    
-    // Run section reveal immediately and on scroll
-    revealSections();
-    window.addEventListener('scroll', revealSections, { passive: true });
-    
-    // Copy phone number functionality
-    window.copyPhoneNumber = function() {
-        const phoneNumber = '+91 9944516052';
-        
-        if (navigator.clipboard) {
-            // Modern clipboard API
-            navigator.clipboard.writeText(phoneNumber).then(() => {
-                showCopySuccess();
-            });
-        } else {
-            // Fallback for older browsers
-            const textarea = document.createElement('textarea');
-            textarea.value = phoneNumber;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
-            showCopySuccess();
-        }
+
+    const navbar = document.querySelector('.navbar');
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    const menu = document.querySelector('.nav-links');
+    const navLinks = [...document.querySelectorAll('.nav-link')];
+    const mobile = matchMedia('(max-width: 1000px)');
+    const background = [...document.querySelectorAll('main, footer, .nav-brand, .skip-link')];
+
+    const updateHeaderHeight = () => {
+        document.documentElement.style.setProperty('--header-height', `${navbar.offsetHeight + 16}px`);
     };
-    
-    function showCopySuccess() {
-        const existingMessage = document.querySelector('.copy-success');
-        if (existingMessage) {
-            existingMessage.remove();
-        }
-        
-        const successMessage = document.createElement('div');
-        successMessage.className = 'copy-success';
-        successMessage.textContent = 'Phone number copied!';
-        document.body.appendChild(successMessage);
-        
-        setTimeout(() => {
-            if (successMessage.parentNode) {
-                successMessage.remove();
+    new ResizeObserver(updateHeaderHeight).observe(navbar);
+
+    const setMenuOpen = (open, restoreFocus = false) => {
+        // Move focus before making the menu inert when closing it.
+        if (!open && restoreFocus) toggle.focus();
+        toggle.classList.toggle('active', open);
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? labels.closeMenu : labels.openMenu);
+        menu.classList.toggle('active', open);
+        menu.inert = mobile.matches && !open;
+        document.body.classList.toggle('menu-open', open);
+        background.forEach(element => { element.inert = open; });
+        if (open) navLinks[0].focus();
+    };
+
+    toggle.addEventListener('click', () => {
+        setMenuOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (mobile.matches) setMenuOpen(false);
+            // Keep native hash navigation, including browser history and target focus.
+            setActiveLink(link);
+        });
+    });
+    mobile.addEventListener('change', () => {
+        const focusInsideMenu = menu.contains(document.activeElement);
+        setMenuOpen(false, mobile.matches && focusInsideMenu);
+    });
+    document.addEventListener('keydown', event => {
+        if (toggle.getAttribute('aria-expanded') !== 'true') return;
+        if (event.key === 'Escape') {
+            event.preventDefault();
+            setMenuOpen(false, true);
+        } else if (event.key === 'Tab') {
+            const focusable = [toggle, ...navLinks];
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
             }
-        }, 3000);
+        }
+    });
+    setMenuOpen(false);
+
+    function setActiveLink(activeLink) {
+        navLinks.forEach(link => {
+            link.classList.toggle('active', link === activeLink);
+            if (link === activeLink) link.setAttribute('aria-current', 'location');
+            else link.removeAttribute('aria-current');
+        });
     }
-    
-    // Add body loaded class for initial animation as soon as the DOM is ready,
-    // so the page doesn't stay hidden waiting for images/iframes to finish
-    document.body.classList.add('loaded');
-}); 
+    const sectionObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const link = navLinks.find(link => link.hash === `#${entry.target.id}`);
+            if (link) setActiveLink(link);
+        });
+    }, { rootMargin: '-20% 0px -65% 0px' });
+    document.querySelectorAll('main > section[id]').forEach(section => sectionObserver.observe(section));
+
+    const status = document.querySelector('#copy-status');
+    let statusTimeout;
+    document.querySelector('.copy-btn').addEventListener('click', async () => {
+        let message;
+        try {
+            await navigator.clipboard.writeText('+91 9944516052');
+            message = labels.copied;
+        } catch {
+            message = labels.copyFailed;
+        }
+        clearTimeout(statusTimeout);
+        status.textContent = message;
+        statusTimeout = setTimeout(() => { status.textContent = ''; }, 6000);
+    });
+});

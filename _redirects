@@ -1,0 +1,9 @@
+# Route the homepage by country; nf_country remembers a manual selection.
+/  /india/  302!  Country=in
+/  /us/     302!  Country=us
+/  /us/     302!
+
+# Apply the same routing to direct visits to the root HTML file.
+/index.html  /india/  302!  Country=in
+/index.html  /us/     302!  Country=us
+/index.html  /us/     302!
