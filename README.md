@@ -1,5 +1,7 @@
 # Aayakalai website
 
+Live site: https://karthickadimurai.netlify.app/
+
 Deploy this directory as the Netlify publish directory. No build step is needed.
 
 ## Regional pages
